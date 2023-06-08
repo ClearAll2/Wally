@@ -3,6 +3,10 @@ package com.lkonlesoft.wally
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.twotone.ArrowBack
@@ -40,6 +45,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -137,20 +143,37 @@ private fun DrawerMenuItem(
     imageVector: ImageVector,
     text: String,
     route: String,
+    selected: Boolean,
     onItemClick: () -> Unit){
+    val animateColor: Color by animateColorAsState(
+        targetValue = if (selected) MaterialTheme.colorScheme.primary else Color.Transparent,
+        animationSpec = tween(
+            durationMillis = 1000,
+            delayMillis = 0,
+            easing = FastOutLinearInEasing
+        ))
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onItemClick)
-            .padding(16.dp),
+            .padding(
+                horizontal = 16.dp,
+                vertical = 10.dp
+            )
+            .background(
+                animateColor,
+                shape = RoundedCornerShape(20.dp)
+            )
+            ,
         verticalAlignment = Alignment.CenterVertically,
     ){
         Icon(
             imageVector = imageVector,
             contentDescription = route,
+            modifier = Modifier.padding(5.dp)
         )
-        Spacer(modifier = Modifier.width(25.dp))
-        Text(text = text)
+        Spacer(modifier = Modifier.width(15.dp))
+        Text(text = text,  modifier = Modifier.padding(5.dp))
     }
 }
 
@@ -192,10 +215,13 @@ fun DrawerBar(drawerState: DrawerState, scope: CoroutineScope, navController: Na
         LazyColumn(modifier = Modifier.fillMaxWidth())
         {
             items(drawerList) { item ->
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
                 DrawerMenuItem(
                     imageVector = item.icon,
                     text = item.tittle,
                     route = item.route,
+                    selected = currentRoute == item.route,
                     onItemClick = {
                         navController.navigate(item.route) {
                             // Pop up to the start destination of the graph to
