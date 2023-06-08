@@ -12,20 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wally"
         tools:targetApi="33">
-        <activity
-            android:name=".About"
-            android:exported="false"
-            android:label="@string/title_activity_about"
-            android:theme="@style/Theme.Wally" />
-        <activity
-            android:name=".Setting"
-            android:exported="false"
-            android:label="@string/title_activity_setting"
-            android:theme="@style/Theme.Wally" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Wally">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
