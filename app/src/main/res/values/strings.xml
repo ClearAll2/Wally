@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Wally</string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_donate">Donate</string>
+    <string name="rate_link">https://play.google.com/store/apps/details?id=com.lkonlesoft.displayinfo</string>
+    <string name="title_activity_rate">Rate</string>
 </resources>
