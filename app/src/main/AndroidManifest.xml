@@ -13,27 +13,27 @@
         android:theme="@style/Theme.Wally"
         tools:targetApi="33">
         <activity
-            android:name=".Rate"
+            android:name=".view.Rate"
             android:exported="false"
             android:label="@string/title_activity_rate"
             android:theme="@style/Theme.Wally" />
         <activity
-            android:name=".Donate"
+            android:name=".view.Donate"
             android:exported="false"
             android:label="@string/title_activity_donate"
             android:theme="@style/Theme.Wally" />
         <activity
-            android:name=".About"
+            android:name=".view.About"
             android:exported="false"
             android:label="@string/title_activity_about"
             android:theme="@style/Theme.Wally" />
         <activity
-            android:name=".Setting"
+            android:name=".view.Setting"
             android:exported="false"
             android:label="@string/title_activity_setting"
             android:theme="@style/Theme.Wally" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Wally">
             <intent-filter>

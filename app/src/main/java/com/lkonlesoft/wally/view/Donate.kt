@@ -1,4 +1,4 @@
-package com.lkonlesoft.wally
+package com.lkonlesoft.wally.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.lkonlesoft.wally.ui.theme.WallyTheme
 
-class About : ComponentActivity() {
+class Donate : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -39,7 +39,7 @@ class About : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AboutScaffoldContext(onClicked = {this.finish()})
+                    DonateScaffoldContext(onClicked = {this.finish()})
                 }
             }
         }
@@ -48,12 +48,12 @@ class About : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScaffoldContext(onClicked: () -> Unit){
+fun DonateScaffoldContext(onClicked: () -> Unit){
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "About") },
+                title = { Text(text = "Donate") },
                 scrollBehavior = scrollBehavior,
                 navigationIcon = {
                     IconButton(onClick = onClicked) {
@@ -69,13 +69,13 @@ fun AboutScaffoldContext(onClicked: () -> Unit){
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            AboutScreen()
+            DonateScreen()
         }
     }
 }
 
 @Composable
-fun AboutScreen() {
+fun DonateScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -83,7 +83,7 @@ fun AboutScreen() {
 
     ) {
         Text(
-            text = "About View",
+            text = "Donate View",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -92,3 +92,4 @@ fun AboutScreen() {
         )
     }
 }
+

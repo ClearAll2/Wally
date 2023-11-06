@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "804160092218",
+    "firebase_url": "https://wally-9d39f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "wally-9d39f",
+    "storage_bucket": "wally-9d39f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804160092218:android:828aa5d45ad59265ee1d03",
+        "android_client_info": {
+          "package_name": "com.lkonlesoft.wally"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804160092218-07fj701va1a2g0obnov003hnre6gcd4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxOYTeIwTzKXtNiXphqFTAypRCh6qaftQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804160092218-07fj701va1a2g0obnov003hnre6gcd4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

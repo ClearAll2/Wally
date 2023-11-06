@@ -1,4 +1,4 @@
-package com.lkonlesoft.wally
+package com.lkonlesoft.wally.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -43,7 +43,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
@@ -54,6 +53,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.lkonlesoft.wally.`object`.NavigationItem
 import com.lkonlesoft.wally.ui.theme.WallyTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -61,6 +61,11 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*FirebaseApp.initializeApp(this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            DebugAppCheckProviderFactory.getInstance(),
+        )*/
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             WallyTheme {
@@ -159,7 +164,6 @@ private fun DrawerMenuItem(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DrawerBar(drawerState: DrawerState, scope: CoroutineScope, navController: NavController){
     val drawerList = listOf(
@@ -233,15 +237,15 @@ fun NavBar(navController: NavController){
         NavigationItem.Collection,
         NavigationItem.Favorite
     )
-
     NavigationBar {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
+            val isSelected = currentRoute == item.route
             NavigationBarItem(
-                icon = { Icon(imageVector = item.icon, contentDescription = item.route) },
+                icon = { Icon(imageVector = if (isSelected) item.selectedIcon else item.icon, contentDescription = item.route) },
                 label = { Text(item.tittle) },
-                selected = currentRoute == item.route,
+                selected = isSelected,
                 onClick = {
                     navController.navigate(item.route) {
                         // Pop up to the start destination of the graph to
@@ -264,7 +268,6 @@ fun NavBar(navController: NavController){
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun FavoriteScreen() {
     Column(
@@ -292,25 +295,12 @@ fun FavoriteScreen() {
 
 
 
-@Preview(showBackground = true)
 @Composable
 fun HomeScreen() {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxSize()
 
-    ) {
-        Text(
-            text = "Home View",
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
-    }
 }
+
+
 
 @Composable
 fun CollectionScreen() {

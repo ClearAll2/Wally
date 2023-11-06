@@ -1,4 +1,4 @@
-package com.lkonlesoft.wally
+package com.lkonlesoft.wally.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.lkonlesoft.wally.ui.theme.WallyTheme
 
-class Donate : ComponentActivity() {
+class About : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -39,7 +39,7 @@ class Donate : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DonateScaffoldContext(onClicked = {this.finish()})
+                    AboutScaffoldContext(onClicked = {this.finish()})
                 }
             }
         }
@@ -48,12 +48,12 @@ class Donate : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DonateScaffoldContext(onClicked: () -> Unit){
+fun AboutScaffoldContext(onClicked: () -> Unit){
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Donate") },
+                title = { Text(text = "About") },
                 scrollBehavior = scrollBehavior,
                 navigationIcon = {
                     IconButton(onClick = onClicked) {
@@ -69,13 +69,13 @@ fun DonateScaffoldContext(onClicked: () -> Unit){
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            DonateScreen()
+            AboutScreen()
         }
     }
 }
 
 @Composable
-fun DonateScreen() {
+fun AboutScreen() {
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -83,7 +83,7 @@ fun DonateScreen() {
 
     ) {
         Text(
-            text = "Donate View",
+            text = "About View",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -92,4 +92,3 @@ fun DonateScreen() {
         )
     }
 }
-
